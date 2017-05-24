@@ -1,5 +1,6 @@
 from lxml import html
 import requests
+import operator
 
 page = requests.get('http://www.soundscapesmusic.com/tickets/')
 tree = html.fromstring(page.content)
@@ -19,3 +20,20 @@ for i in range(0,len(gigs),4):
 
     deets = [artist, location, date, price]
     data.append(deets)
+
+def sortByArtists(data):
+    data.sort(key=operator.itemgetter(0))
+    for i in data:
+        print(i)
+
+def sortByDate(data):
+    data.sort(key=operator.itemgetter(2))
+    for i in data:
+        print(i)
+
+def sortByPrice(data):
+    data.sort(key=operator.itemgetter(3))
+    for i in data:
+        print(i)
+
+sortByDate(data)

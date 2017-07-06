@@ -1,8 +1,6 @@
-from lxml import html
 import requests
 import operator
 import json
-import cherrypy
 
 page = requests.get('http://www.soundscapesmusic.com/tickets/')
 tree = html.fromstring(page.content)
@@ -54,7 +52,6 @@ def sortByDate(data):
 def sortByPrice(data):
     data.sort(key=operator.itemgetter(3))
     return data
-
 
 def showHTML(data):
     htmlcode = HTML.list(data)
